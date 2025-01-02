@@ -23,13 +23,11 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 }) => {
   const [isMounted, setIsMounted] = useState(false);
 
-  console.log("Values passed to component to be displayed: ", value);
   useEffect(() => {
     setIsMounted(true);
   }, []);
 
   const onUpload = (result: any) => {
-    console.log("results from CldUploadWidget: ", result.info.secure_url);
     onChange(result.info.secure_url);
   };
 
@@ -41,7 +39,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     <div>
       <div className="mb-4 flex items-center gap-4 overflow-x-auto whitespace-nowrap">
         {value.map((url) => (
-          <ImageContainer url={url} onRemove={onRemove} />
+          <ImageContainer key={url} url={url} onRemove={onRemove} />
         ))}
       </div>
       <CldUploadWidget onUpload={onUpload} uploadPreset="n5vrllrh">
