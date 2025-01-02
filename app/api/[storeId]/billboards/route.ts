@@ -60,7 +60,7 @@ export async function GET(
   { params }: { params: { storeId: string } }
 ) {
   try {
-    if (!params.storeId) {
+    if (!params || !params.storeId) {
       return new NextResponse("Store ID is required", { status: 400 });
     }
 
